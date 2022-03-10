@@ -51,3 +51,7 @@ Student::Student(std::string name, std::string surname, std::string login, std::
 	m_course = course;
 	m_MiddleEstimation = MiddleEstimation;
 }
+int Student::m_GetMiddleEstimation()
+{
+	return m_MiddleEstimation;
+}

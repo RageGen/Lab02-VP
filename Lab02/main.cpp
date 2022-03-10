@@ -32,7 +32,7 @@ Student InputStudentInfo()
 	cin >> StudentMiddleEstimation;
 	cout << "Введите логин студента\n---> ";
 	cin >> StudentLogin;
-	cout << "Введите пароль студент\n---> ";
+	cout << "Введите пароль студента\n---> ";
 	cin >> StudentPassword;
 	return 	Student(StudentName, StudentSurname, StudentLogin, StudentPassword, StudentAge, StudentCourse, StudentMiddleEstimation);
 }
@@ -61,7 +61,7 @@ void CourseAboutTable()
 {
 	int TitleLength = BasicCourse.m_GetTitle().length();
 	int DescriptionLength = BasicCourse.m_GetDescription().length();
-	cout << setw(TitleLength) << left << BasicCourse.m_GetTitle() << '|' << setw(DescriptionLength) << left << BasicCourse.m_GetDescription() << endl;
+	cout << setw(TitleLength) << left << BasicCourse.m_GetTitle() << '|' << setw(DescriptionLength) << left << BasicCourse.m_GetDescription() <<"|Средняя оценка студентов за курс-"<<setw(1) << BasicCourse.m_GetCourseEstimation() << endl;
 }
 void InputCourseInfo()
 {
@@ -81,7 +81,7 @@ void StudentsTable(vector<Student>& StudentList)
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
-	for (int i = 0; i < StudentsAmount; i++)
+	for (int i = 0; i < StudentList.size(); i++)
 	{
 		if (StudentList[i].m_GetName().length() > MaxNameLength)
 		{
@@ -100,7 +100,7 @@ void StudentsTable(vector<Student>& StudentList)
 			MaxPasswordLength = StudentList[i].m_GetPassword().length();
 		}
 	}
-	for (int i = 0; i < StudentsAmount; i++)
+	for (int i = 0; i < StudentList.size(); i++)
 	{
 		int BufferAge = StudentList[i].m_GetAge();
 		for (int k = 0; BufferAge > 0; k++)
@@ -112,14 +112,15 @@ void StudentsTable(vector<Student>& StudentList)
 			}
 		}
 	}
-	for (int j = 0; j < StudentsAmount; j++)
+	for (int j = 0; j < StudentList.size(); j++)
 	{
-		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength) << left << StudentList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
+		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength+1) << left << StudentList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|'  << endl;
 	}
 }
 void MenuTable()
 {
+	system("cls");
 	cout << "1. Создать курс" << endl;
 	cout << "2. Вывести всю информаци о курсе" << endl;
 	cout << "3. Проверить корректность возраста всех участников курса"<<endl;
@@ -144,7 +145,7 @@ void TeachersTable(vector<Teacher>& TeacherList)
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
-	for (int i = 0; i < StudentsAmount; i++)
+	for (int i = 0; i < TeacherList.size(); i++)
 	{
 		if (TeacherList[i].m_GetName().length() > MaxNameLength)
 		{
@@ -163,7 +164,7 @@ void TeachersTable(vector<Teacher>& TeacherList)
 			MaxPasswordLength = TeacherList[i].m_GetPassword().length();
 		}
 	}
-	for (int i = 0; i < TeachersAmount; i++)
+	for (int i = 0; i < TeacherList.size(); i++)
 	{
 		int BufferAge = TeacherList[i].m_GetAge();
 		for (int k = 0; BufferAge > 0; k++)
@@ -175,9 +176,9 @@ void TeachersTable(vector<Teacher>& TeacherList)
 			}
 		}
 	}
-	for (int j = 0; j < TeachersAmount; j++)
+	for (int j = 0; j < TeacherList.size(); j++)
 	{
-		cout << "|" << setw(MaxNameLength) << left << TeacherList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << TeacherList[j].m_GetSurname() << "|" << setw(MaxAgeLength) << left << TeacherList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << TeacherList[j].m_GetLogin()
+		cout << "|" << setw(MaxNameLength) << left << TeacherList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << TeacherList[j].m_GetSurname() << "|" << setw(MaxAgeLength+1) << left << TeacherList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << TeacherList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << TeacherList[j].m_GetPassword() << '|' << endl;
 	}
 }
@@ -190,6 +191,17 @@ void ContinueOrNot()
 	{
 		RunMenu = false;
 	}
+}
+void CalcCourse(vector<Student>& StudentList)
+{
+	int sum = 0;
+	int k = 0;
+	for (int i = 0; i < StudentList.size();i++)
+	{
+		sum += StudentList[i].m_GetMiddleEstimation();
+		k++;
+	}
+	BasicCourse.m_SetCourseEstimation((sum / k));
 }
 int main()
 {
@@ -213,6 +225,7 @@ int main()
 			{
 				StudentList.push_back(InputStudentInfo());
 			}
+			CalcCourse(StudentList);
 			system("cls");
 			cout << "Сколько преподавателей будет работать на курсе?\n---> ";
 			cin >> TeachersAmount;
@@ -224,8 +237,10 @@ int main()
 			break;
 		case 2:
 			CourseAboutTable();
-			cout << "Состав:" << endl;
+			cout << "Состав\n" << endl;
+			cout << "Студенты:" << endl;
 			StudentsTable(StudentList);
+			cout << "Преподаватели:" << endl;
 			TeachersTable(TeacherList);
 			ContinueOrNot();
 			break;
