@@ -4,6 +4,7 @@
 #include <vector>
 #include <Windows.h>
 #include <iomanip>
+#include <fstream>
 using namespace std;
 int StudentsAmount = 0;
 int TeachersAmount = 0;
