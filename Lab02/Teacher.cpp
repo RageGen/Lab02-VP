@@ -1,19 +1,19 @@
 #include "Teacher.hpp"
-void Teacher::m_SetName() {
-	std::cout << "¬ведите им€ преподавател€ ---> ";
-	std::cin >> m_name;
+void Teacher::m_SetName(std::string name) {
+	m_name=name;
 }
-void Teacher::m_SetSurname() {
-	std::cout << "¬ведите фамилию преподавател€ ---> ";
-	std::cin >> m_surname;
+void Teacher::m_SetSurname(std::string surname) {
+	m_surname=surname;
 }
-void Teacher::m_SetLogin() {
-	std::cout << "¬ведите логин преподавател€ ---> ";
-	std::cin >> m_login;
+void Teacher::m_SetAge(int age)
+{
+	m_age = age;
 }
-void Teacher::m_SetPassword() {
-	std::cout << "¬ведите пароль преподавател€ ---> ";
-	std::cin >> m_password;
+void Teacher::m_SetLogin(std::string login) {
+	m_login=login;
+}
+void Teacher::m_SetPassword(std::string password) {
+	m_password=password;
 }
 std::string Teacher::m_GetName() {
 	return m_name;
@@ -44,4 +44,8 @@ Teacher::Teacher(std::string name, std::string surname, std::string login, std::
 	m_login = login;
 	m_password = password;
 	m_age = age;
+}
+
+Teacher::Teacher()
+{
 }

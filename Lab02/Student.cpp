@@ -1,23 +1,26 @@
 #include "Student.hpp"
-void Student::m_SetName() {
-	std::cout << "¬ведите им€ студента ---> ";
-	std::cin >> m_name;
+void Student::m_SetName(std::string name) {
+	m_name=name;
 }
-void Student::m_SetSurname() {
-	std::cout << "¬ведите фамилию студента ---> ";
-	std::cin >> m_surname;
+void Student::m_SetSurname(std::string surname) {
+	m_surname=surname;
 }
-void Student::m_SetAge() {
-	std::cout << "¬ведите возраст студента ---> ";
-	std::cin >> m_age;
+void Student::m_SetAge(int age) {
+	m_age=age;
 }
-void Student::m_SetLogin() {
-	std::cout << "¬ведите логин студента ---> ";
-	std::cin >> m_login;
+void Student::m_SetLogin(std::string login) {
+	m_login=login;
 }
-void Student::m_SetPassword() {
-	std::cout << "¬ведите пароль студента ---> ";
-	std::cin >> m_password;
+void Student::m_SetPassword(std::string password) {
+	m_password=password;
+}
+void Student::m_SetMiddleEstimation(int MiddleEstimation)
+{
+	m_MiddleEstimation = MiddleEstimation;
+}
+void Student::m_SetCourse(int Course)
+{
+	m_course = Course;
 }
 std::string Student::m_GetName() {
 	return m_name;
@@ -50,6 +53,9 @@ Student::Student(std::string name, std::string surname, std::string login, std::
 	m_age = age;
 	m_course = course;
 	m_MiddleEstimation = MiddleEstimation;
+}
+Student::Student()
+{
 }
 int Student::m_GetMiddleEstimation()
 {

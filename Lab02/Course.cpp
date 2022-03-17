@@ -1,4 +1,8 @@
 #include "Course.hpp"
+void Course::m_SetDescription(std::string Description)
+{
+	m_CourseDescription = Description;
+}
 Course::Course(std::string title, std::string description)
 {
 	m_CourseTitle = title;
@@ -14,6 +18,10 @@ int Course::m_GetCourseEstimation()
 void Course::m_SetCourseEstimation(int Estimation)
 {
 	m_CourseEstimation = Estimation;
+}
+void Course::m_SetTitle(std::string Title)
+{
+	m_CourseTitle = Title;
 }
 std::string Course::m_GetDescription()
 {
