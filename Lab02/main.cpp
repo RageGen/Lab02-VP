@@ -43,6 +43,7 @@ int main()
 			ContinueOrNot();
 			break;
 		case 2:
+			system("cls");
 			if (TeacherList.size() == 0 || StudentList.size() == 0)
 			{
 				cout << "Недостаточно информации!" << endl;

@@ -151,7 +151,7 @@ void StudentsTable(vector<Student>& StudentList)
 	}
 	for (int j = 0; j < StudentList.size(); j++)
 	{
-		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
+		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|"<<setw(1)<<left<<StudentList[j].m_GetMiddleEstimation() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|' << endl;
 	}
 }
