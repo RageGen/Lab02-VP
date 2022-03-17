@@ -1,3 +1,4 @@
+#pragma once
 #include "Course.hpp"
 #include "Student.hpp"
 #include "Teacher.hpp"
@@ -6,11 +7,12 @@
 #include <iomanip>
 Student InputStudentInfo();
 Teacher InputTeacherInfo();
-void CourseAboutTable();
-void InputCourseInfo();
-void StudentsTable(vector<Student>& StudentList);
+void CourseAboutTable(Course);
+void InputCourseInfo(Course);
+void StudentsTable(std::vector<Student>& StudentList);
 void MenuTable();
-void CheckAge(vector<Teacher>& TeacherList, vector<Student>& StudentList);
-void TeachersTable(vector<Teacher>& TeacherList);
+void CheckAge(std::vector<Teacher>& TeacherList, std::vector<Student>& StudentList);
+void TeachersTable(std::vector<Teacher>& TeacherList);
 void ContinueOrNot();
-void CalcCourse(vector<Student>& StudentList);
+int CalcCourse(std::vector<Student>& StudentList);
+void LocalInformation(std::vector<Student>& StudentList, std::vector<Teacher>& TeacherList, Course& BasicCourse);

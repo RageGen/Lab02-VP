@@ -1,7 +1,52 @@
 #include "Func.hpp"
 using namespace std;
-Course BasicCourse;
 bool RunMenu = true;
+void LocalInformation(vector<Student>& StudentList, vector<Teacher>& TeacherList, Course& BasicCourse)
+{
+	BasicCourse.m_SetTitle("История");
+	BasicCourse.m_SetDescription("ИУК4-12Б");
+	StudentList[0].m_SetName("Егор");
+	StudentList[0].m_SetSurname("Казанцев");
+	StudentList[0].m_SetAge(22);
+	StudentList[0].m_SetCourse(3);
+	StudentList[0].m_SetMiddleEstimation(3);
+	StudentList[0].m_SetLogin("Egor1203");
+	StudentList[0].m_SetPassword("password12345");
+
+	StudentList[1].m_SetName("Сергей");
+	StudentList[1].m_SetSurname("Иванов");
+	StudentList[1].m_SetAge(18);
+	StudentList[1].m_SetCourse(1);
+	StudentList[1].m_SetMiddleEstimation(4);
+	StudentList[1].m_SetLogin("Serg12");
+	StudentList[1].m_SetPassword("password12345");
+
+	StudentList[2].m_SetName("Елизавета");
+	StudentList[2].m_SetSurname("Козырева");
+	StudentList[2].m_SetAge(21);
+	StudentList[2].m_SetCourse(2);
+	StudentList[2].m_SetMiddleEstimation(5);
+	StudentList[2].m_SetLogin("Elz11");
+	StudentList[2].m_SetPassword("password12345");
+
+	TeacherList[0].m_SetName("Ян");
+	TeacherList[0].m_SetSurname("Андреев");
+	TeacherList[0].m_SetAge(35);
+	TeacherList[0].m_SetLogin("Yan35");
+	TeacherList[0].m_SetPassword("password12345");
+
+	TeacherList[1].m_SetName("Алиса");
+	TeacherList[1].m_SetSurname("Федорова");
+	TeacherList[1].m_SetAge(45);
+	TeacherList[1].m_SetLogin("Alis45");
+	TeacherList[1].m_SetPassword("password12345");
+
+	TeacherList[2].m_SetName("Иван");
+	TeacherList[2].m_SetSurname("Щербаков");
+	TeacherList[2].m_SetAge(55);
+	TeacherList[2].m_SetLogin("Ivan55");
+	TeacherList[2].m_SetPassword("password12345");
+}
 Student InputStudentInfo()
 {
 	system("cls");
@@ -49,13 +94,13 @@ Teacher InputTeacherInfo()
 	cin >> TeacherPassword;
 	return Teacher(TeacherName, TeacherSurname, TeacherLogin, TeacherPassword, TeacherAge);
 }
-void CourseAboutTable()
+void CourseAboutTable(Course BasicCourse)
 {
 	int TitleLength = BasicCourse.m_GetTitle().length();
 	int DescriptionLength = BasicCourse.m_GetDescription().length();
 	cout << setw(TitleLength) << left << BasicCourse.m_GetTitle() << '|' << setw(DescriptionLength) << left << BasicCourse.m_GetDescription() << "|Средняя оценка студентов за курс-" << setw(1) << BasicCourse.m_GetCourseEstimation() << endl;
 }
-void InputCourseInfo()
+void InputCourseInfo(Course BasicCourse)
 {
 	string CourseTitle = "";
 	string CourseDescription = "";
@@ -183,7 +228,8 @@ void ContinueOrNot()
 		RunMenu = false;
 	}
 }
-void CalcCourse(vector<Student>& StudentList)
+
+int CalcCourse(std::vector<Student>& StudentList)
 {
 	int sum = 0;
 	int k = 0;
@@ -192,5 +238,6 @@ void CalcCourse(vector<Student>& StudentList)
 		sum += StudentList[i].m_GetMiddleEstimation();
 		k++;
 	}
-	BasicCourse.m_SetCourseEstimation((sum / k));
+	return (sum / k);
 }
+

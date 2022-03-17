@@ -1,5 +1,5 @@
-#include "User.hpp"
 #pragma once
+#include "User.hpp"
 class Teacher : public User
 {
 public:

@@ -39,6 +39,9 @@
     <ClCompile Include="Course.cpp">
       <Filter>Models\Class3</Filter>
     </ClCompile>
+    <ClCompile Include="Func.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.hpp">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="Course.hpp">
       <Filter>Models\Class3</Filter>
+    </ClInclude>
+    <ClInclude Include="Func.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
