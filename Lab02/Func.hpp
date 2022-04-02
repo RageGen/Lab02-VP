@@ -6,13 +6,15 @@
 #include <Windows.h>
 #include <iomanip>
 bool InputStudentInfo();
-bool InputTeacherInfo(std::vector<Teacher>& TeacherList);
-void CourseAboutTable(Course);
-void InputCourseInfo(Course);
+bool InputTeacherInfo();
+bool InputAllInfo();
+bool AllInfoTable();
+void CourseAboutTable();
+void InputCourseInfo();
 bool StudentsTable();
 void MenuTable();
-void CheckAge(std::vector<Teacher>& TeacherList, std::vector<Student>& StudentList);
-void TeachersTable(std::vector<Teacher>& TeacherList);
+bool CheckAge();
+void TeachersTable();
 void ContinueOrNot();
-int CalcCourse(std::vector<Student>& StudentList);
-void LocalInformation(std::vector<Student>& StudentList, std::vector<Teacher>& TeacherList, Course& BasicCourse);
+void CalcCourse();
+void LocalInformation();

@@ -44,6 +44,7 @@ namespace ZDA
 		printMenu();
 		std::cout << "\n¬ведите пункт меню\n>> ";
 		std::cin >> m_select;
+		system("cls");
 		if (m_select == 0)
 			return false;
 		return m_items[m_select - 1].run();

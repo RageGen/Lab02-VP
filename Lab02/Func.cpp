@@ -4,13 +4,15 @@ bool RunMenu = true;
 vector<Student>StudentList;
 vector<Teacher>TeacherList;
 Course BasicCourse;
-void LocalInformation(vector<Student>& StudentList, vector<Teacher>& TeacherList, Course& BasicCourse)
+void LocalInformation()
 {
+	StudentList.resize(3);
+	TeacherList.resize(3);
 	BasicCourse.m_SetTitle("История");
 	BasicCourse.m_SetDescription("ИУК4-12Б");
 	StudentList[0].m_SetName("Егор");
 	StudentList[0].m_SetSurname("Казанцев");
-	StudentList[0].m_SetAge(22);
+	StudentList[0].m_SetAge(101);
 	StudentList[0].m_SetCourse(3);
 	StudentList[0].m_SetMiddleEstimation(3);
 	StudentList[0].m_SetLogin("Egor1203");
@@ -78,7 +80,7 @@ bool InputStudentInfo()
 	StudentList.push_back(BufferStudent);
 	return true;
 }
-Teacher InputTeacherInfo()
+bool InputTeacherInfo()
 {
 	system("cls");
 	string TeacherName = "";
@@ -97,15 +99,17 @@ Teacher InputTeacherInfo()
 	cin >> TeacherLogin;
 	cout << "Введите пароль преподавателя\n---> ";
 	cin >> TeacherPassword;
-	return Teacher(TeacherName, TeacherSurname, TeacherLogin, TeacherPassword, TeacherAge);
+	Teacher BufferTeacher = Teacher(TeacherName,TeacherSurname,TeacherLogin,TeacherPassword,TeacherAge);
+	TeacherList.push_back(BufferTeacher);
+	return true;
 }
-void CourseAboutTable(Course BasicCourse)
+void CourseAboutTable()
 {
 	int TitleLength = BasicCourse.m_GetTitle().length();
 	int DescriptionLength = BasicCourse.m_GetDescription().length();
 	cout << setw(TitleLength) << left << BasicCourse.m_GetTitle() << '|' << setw(DescriptionLength) << left << BasicCourse.m_GetDescription() << "|Средняя оценка студентов за курс-" << setw(1) << BasicCourse.m_GetCourseEstimation() << endl;
 }
-void InputCourseInfo(Course BasicCourse)
+void InputCourseInfo()
 {
 	string CourseTitle = "";
 	string CourseDescription = "";
@@ -114,7 +118,8 @@ void InputCourseInfo(Course BasicCourse)
 	getline(cin, CourseTitle);
 	cout << "Укажите описание курса\n---> ";
 	getline(cin, CourseDescription);
-	BasicCourse = Course(CourseTitle, CourseDescription);
+	BasicCourse.m_SetTitle(CourseTitle);
+	BasicCourse.m_SetDescription(CourseDescription);
 }
 bool StudentsTable()
 {
@@ -161,26 +166,30 @@ bool StudentsTable()
 	}
 	return true;
 }
-void MenuTable()
+bool CheckAge()
 {
-	system("cls");
-	cout << "1. Создать курс" << endl;
-	cout << "2. Вывести всю информаци о курсе" << endl;
-	cout << "3. Проверить корректность возраста всех участников курса" << endl;
-	cout << "0. Выход\n---> ";
-}
-void CheckAge(vector<Teacher>& TeacherList, vector<Student>& StudentList)
-{
-	for (int i = 0; i < StudentList.size();i++)
+	bool flag = true;
+	int iflag = 0;
+	while (flag==true)
 	{
-		StudentList[i].m_CheckAge(StudentList[i].m_GetAge(), i);
+		system("cls");
+		for (int i = 0; i < StudentList.size(); i++)
+		{
+			StudentList[i].m_CheckAge(StudentList[i].m_GetAge(), i);
+		}
+		for (int i = 0; i < TeacherList.size(); i++)
+		{
+			TeacherList[i].m_CheckAge(TeacherList[i].m_GetAge(), i);
+		}
+		cout << "Вернуться 1-Да 0-Нет" << endl;
+		cin >> iflag;
+		if (iflag == 1) {
+			flag = false;
+		}
 	}
-	for (int i = 0; i < TeacherList.size(); i++)
-	{
-		TeacherList[i].m_CheckAge(TeacherList[i].m_GetAge(), i);
-	}
+	return true;
 }
-void TeachersTable(vector<Teacher>& TeacherList)
+void TeachersTable()
 {
 	int MaxNameLength = 0;
 	int MaxSurnameLength = 0;
@@ -224,18 +233,8 @@ void TeachersTable(vector<Teacher>& TeacherList)
 			<< "|" << setw(MaxPasswordLength) << left << TeacherList[j].m_GetPassword() << '|' << endl;
 	}
 }
-void ContinueOrNot()
-{
-	int ContinueChecker = 1;
-	cout << "Вернуться в меню? 1-Да 0-Нет" << endl;
-	cin >> ContinueChecker;
-	if (ContinueChecker == 0)
-	{
-		RunMenu = false;
-	}
-}
 
-int CalcCourse(std::vector<Student>& StudentList)
+void CalcCourse()
 {
 	int sum = 0;
 	int k = 0;
@@ -244,6 +243,45 @@ int CalcCourse(std::vector<Student>& StudentList)
 		sum += StudentList[i].m_GetMiddleEstimation();
 		k++;
 	}
-	return (sum / k);
+	BasicCourse.m_SetCourseEstimation (sum / k);
 }
-
+bool InputAllInfo()
+{
+	int StudentAmount = 0;
+	int TeacherAmount = 0;
+	InputCourseInfo();
+	cout << "Сколько студентов добавим?" << endl;
+	cin >> StudentAmount;
+	for (int i=0;i<StudentAmount;i++)
+	{
+		InputStudentInfo();
+	}
+	cout << "Сколько преподавателей добавим?" << endl;
+	cin >> TeacherAmount;
+	for (int i = 0; i < TeacherAmount; i++)
+	{
+		InputTeacherInfo();
+	}
+	return true;
+}
+bool AllInfoTable()
+{
+	bool flag = true;
+	int iflag = 0;
+	CalcCourse();
+	while (flag==true)
+	{
+		system("cls");
+		CourseAboutTable();
+		cout << "Студенты" << endl;
+		StudentsTable();
+		cout << "Преподаватели" << endl;
+		TeachersTable();
+		cout << "Вернуться 1-Да 0-Нет" << endl;
+		cin >> iflag;
+		if (iflag == 1) {
+			flag = false;
+		}
+	}
+	return true;
+}

@@ -10,9 +10,10 @@ int main()
 	int StudentsAmount = 0;
 	int TeachersAmount = 0;
 	int CheckMenu = 0;
-	const int ItemsNumber = 2;
+	const int ItemsNumber = 3;
 	bool RunMenu = true;
-	Item Items[ItemsNumber]{Item{"Ввод информации о студенте",InputStudentInfo},Item{"Вывод",StudentsTable}};
+	LocalInformation();
+	Item Items[ItemsNumber]{ Item{"Ввод информации о курсе",InputAllInfo},Item{"Вывод информации",AllInfoTable},Item{"Проверка возраста всех участников",CheckAge}};
 	Menu menu("Главное меню", Items, ItemsNumber);
 	while (menu.runCommand())
 	{

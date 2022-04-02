@@ -16,13 +16,13 @@
     <Filter Include="Models">
       <UniqueIdentifier>{cf7921bc-46f9-432d-b181-72c7a1e31d4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Models\Class1">
-      <UniqueIdentifier>{3b7feecf-be2a-4132-89ed-cf1f02d2553f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Models\Class2">
+    <Filter Include="Models\Student">
       <UniqueIdentifier>{9bc050f4-3317-4ab8-b57b-59869b139b12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Models\Class3">
+    <Filter Include="Models\Teacher">
+      <UniqueIdentifier>{3b7feecf-be2a-4132-89ed-cf1f02d2553f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\Course">
       <UniqueIdentifier>{1b86b6e9-fa64-457e-84f5-4563b4b01cbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -31,13 +31,13 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Teacher.cpp">
-      <Filter>Models\Class1</Filter>
+      <Filter>Models\Teacher</Filter>
     </ClCompile>
     <ClCompile Include="Student.cpp">
-      <Filter>Models\Class2</Filter>
+      <Filter>Models\Student</Filter>
     </ClCompile>
     <ClCompile Include="Course.cpp">
-      <Filter>Models\Class3</Filter>
+      <Filter>Models\Course</Filter>
     </ClCompile>
     <ClCompile Include="Func.cpp">
       <Filter>Исходные файлы</Filter>
@@ -54,13 +54,13 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Teacher.hpp">
-      <Filter>Models\Class1</Filter>
+      <Filter>Models\Teacher</Filter>
     </ClInclude>
     <ClInclude Include="Student.hpp">
-      <Filter>Models\Class2</Filter>
+      <Filter>Models\Student</Filter>
     </ClInclude>
     <ClInclude Include="Course.hpp">
-      <Filter>Models\Class3</Filter>
+      <Filter>Models\Course</Filter>
     </ClInclude>
     <ClInclude Include="Func.hpp">
       <Filter>Файлы заголовков</Filter>
