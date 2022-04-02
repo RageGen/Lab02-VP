@@ -47,7 +47,7 @@ void LocalInformation(vector<Student>& StudentList, vector<Teacher>& TeacherList
 	TeacherList[2].m_SetLogin("Ivan55");
 	TeacherList[2].m_SetPassword("password12345");
 }
-Student InputStudentInfo()
+bool InputStudentInfo(vector<Student>&StudentList )
 {
 	system("cls");
 	string StudentName = "";
@@ -71,7 +71,9 @@ Student InputStudentInfo()
 	cin >> StudentLogin;
 	cout << "¬ведите пароль студента\n---> ";
 	cin >> StudentPassword;
-	return 	Student(StudentName, StudentSurname, StudentLogin, StudentPassword, StudentAge, StudentCourse, StudentMiddleEstimation);
+	Student BufferStudent = Student(StudentName,StudentSurname,StudentLogin,StudentPassword,StudentAge,StudentCourse,StudentMiddleEstimation);
+	StudentList.push_back(BufferStudent);
+	return true;
 }
 Teacher InputTeacherInfo()
 {

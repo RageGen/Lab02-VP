@@ -5,8 +5,8 @@
 #include <vector>
 #include <Windows.h>
 #include <iomanip>
-Student InputStudentInfo();
-Teacher InputTeacherInfo();
+bool InputStudentInfo(std::vector<Student>& StudentList);
+bool InputTeacherInfo(std::vector<Teacher>& TeacherList);
 void CourseAboutTable(Course);
 void InputCourseInfo(Course);
 void StudentsTable(std::vector<Student>& StudentList);

@@ -141,13 +141,17 @@
   <ItemGroup>
     <ClCompile Include="Course.cpp" />
     <ClCompile Include="Func.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Course.hpp" />
     <ClInclude Include="Func.hpp" />
+    <ClInclude Include="Item.hpp" />
+    <ClInclude Include="Menu.hpp" />
     <ClInclude Include="Student.hpp" />
     <ClInclude Include="Teacher.hpp" />
     <ClInclude Include="User.hpp" />
