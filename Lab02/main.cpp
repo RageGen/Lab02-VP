@@ -2,22 +2,20 @@
 #include "Menu.hpp"
 #include "Item.hpp"
 using namespace std;
-
+using namespace ZDA;
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	vector<Student>StudentList;
-	vector<Teacher>TeacherList;
-	Course BasicCourse;
 	int StudentsAmount = 0;
 	int TeachersAmount = 0;
 	int CheckMenu = 0;
-	const int ItemsNumber = 1;
+	const int ItemsNumber = 2;
 	bool RunMenu = true;
-	StudentList.resize(3);
-	TeacherList.resize(3);
-	LocalInformation(StudentList, TeacherList, BasicCourse);
-	BasicCourse.m_SetCourseEstimation(CalcCourse(StudentList));
-	ZDA::Item Items[ItemsNumber]{ ZDA::Item { "Ввод информации о студенте",InputStudentInfo(StudentList) } };
+	Item Items[ItemsNumber]{Item{"Ввод информации о студенте",InputStudentInfo},Item{"Вывод",StudentsTable}};
+	Menu menu("ZDA menu", Items, ItemsNumber);
+	while (menu.runCommand())
+	{
+	}
+	return 0;
 }

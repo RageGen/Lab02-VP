@@ -5,11 +5,11 @@
 #include <vector>
 #include <Windows.h>
 #include <iomanip>
-bool InputStudentInfo(std::vector<Student>& StudentList);
+bool InputStudentInfo();
 bool InputTeacherInfo(std::vector<Teacher>& TeacherList);
 void CourseAboutTable(Course);
 void InputCourseInfo(Course);
-void StudentsTable(std::vector<Student>& StudentList);
+bool StudentsTable();
 void MenuTable();
 void CheckAge(std::vector<Teacher>& TeacherList, std::vector<Student>& StudentList);
 void TeachersTable(std::vector<Teacher>& TeacherList);

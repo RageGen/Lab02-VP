@@ -1,6 +1,9 @@
 #include "Func.hpp"
 using namespace std;
 bool RunMenu = true;
+vector<Student>StudentList;
+vector<Teacher>TeacherList;
+Course BasicCourse;
 void LocalInformation(vector<Student>& StudentList, vector<Teacher>& TeacherList, Course& BasicCourse)
 {
 	BasicCourse.m_SetTitle("История");
@@ -47,7 +50,7 @@ void LocalInformation(vector<Student>& StudentList, vector<Teacher>& TeacherList
 	TeacherList[2].m_SetLogin("Ivan55");
 	TeacherList[2].m_SetPassword("password12345");
 }
-bool InputStudentInfo(vector<Student>&StudentList )
+bool InputStudentInfo()
 {
 	system("cls");
 	string StudentName = "";
@@ -113,7 +116,7 @@ void InputCourseInfo(Course BasicCourse)
 	getline(cin, CourseDescription);
 	BasicCourse = Course(CourseTitle, CourseDescription);
 }
-void StudentsTable(vector<Student>& StudentList)
+bool StudentsTable()
 {
 	int MaxNameLength = 0;
 	int MaxSurnameLength = 0;
@@ -156,6 +159,7 @@ void StudentsTable(vector<Student>& StudentList)
 		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|"<<setw(1)<<left<<StudentList[j].m_GetMiddleEstimation() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|' << endl;
 	}
+	return true;
 }
 void MenuTable()
 {

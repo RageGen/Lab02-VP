@@ -2,7 +2,7 @@
 #include <iostream>
 namespace ZDA
 {
-	Item::Item(std::string item_title, bool func)
+	Item::Item(std::string item_title, Item::Func func)
 	{
 		m_item_title = item_title;
 		m_func = func;
@@ -17,6 +17,6 @@ namespace ZDA
 	}
 	bool Item::run()
 	{
-		return m_func;
+		return m_func();
 	}
 }

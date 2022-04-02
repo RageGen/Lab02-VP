@@ -5,12 +5,13 @@ namespace ZDA
 	class Item
 	{
 	public:
-		Item(std::string, bool);
+		typedef bool (*Func)();
+		Item(std::string, Func);
 		std::string getItemTitle() const;
 		void printItem() const;
 		bool run();
 	private:
-		bool m_func{};
+		Func m_func{};
 		std::string m_item_title;
 	};
 }
