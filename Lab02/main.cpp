@@ -13,9 +13,10 @@ int main()
 	const int ItemsNumber = 2;
 	bool RunMenu = true;
 	Item Items[ItemsNumber]{Item{"Ввод информации о студенте",InputStudentInfo},Item{"Вывод",StudentsTable}};
-	Menu menu("ZDA menu", Items, ItemsNumber);
+	Menu menu("Главное меню", Items, ItemsNumber);
 	while (menu.runCommand())
 	{
+		system("cls");
 	}
 	return 0;
 }

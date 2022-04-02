@@ -37,12 +37,12 @@ namespace ZDA
 			m_items[i].printItem();
 			std::cout << std::endl;
 		}
-		std::cout << "0. Exit" << std::endl;
+		std::cout << "0. Выход" << std::endl;
 	}
 	bool Menu::runCommand()
 	{
 		printMenu();
-		std::cout << "\n Select >> ";
+		std::cout << "\nВведите пункт меню\n>> ";
 		std::cin >> m_select;
 		if (m_select == 0)
 			return false;
