@@ -10,10 +10,10 @@ int main()
 	int StudentsAmount = 0;
 	int TeachersAmount = 0;
 	int CheckMenu = 0;
-	const int ItemsNumber = 3;
+	const int ItemsNumber = 6;
 	bool RunMenu = true;
 	LocalInformation();
-	Item Items[ItemsNumber]{ Item{"Ввод информации о курсе",InputAllInfo},Item{"Вывод информации",AllInfoTable},Item{"Проверка возраста всех участников",CheckAge}};
+	Item Items[ItemsNumber]{ Item{"Ввод информации о курсе",InputAllInfo},Item{"Вывод информации",AllInfoTable},Item{"Проверка возраста всех участников",CheckAge},Item{"Добавить человека",AppendPeople},Item{"Удаление записи",RemoveStorTc},Item{"Сортировка",Sort}};
 	Menu menu("Главное меню", Items, ItemsNumber);
 	while (menu.runCommand())
 	{

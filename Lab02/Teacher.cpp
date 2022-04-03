@@ -50,3 +50,20 @@ Teacher::Teacher()
 {
 }
 
+std::ostream& operator<<(std::ostream& out, const Teacher& Tc)
+{
+	return out<< Tc.m_name + " " + Tc.m_surname;
+}
+
+std::istream& operator>>(std::istream& in, Teacher& Tc)
+{
+	in >> Tc.m_name;
+	in.ignore();
+	in >> Tc.m_surname;
+	in.ignore();
+	in >> Tc.m_age;
+	in >> Tc.m_login;
+	in.ignore();
+	in>> Tc.m_password;
+	return in;
+}

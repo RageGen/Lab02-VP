@@ -1,13 +1,16 @@
 #include "Func.hpp"
 using namespace std;
 bool RunMenu = true;
-vector<Student>StudentList;
-vector<Teacher>TeacherList;
+int const ListsAmount = 500;
+int Counter = 0;
+int Counter_2 = 0;
+Student StudentList[ListsAmount];
+Teacher TeacherList[ListsAmount];
 Course BasicCourse;
 void LocalInformation()
 {
-	StudentList.resize(3);
-	TeacherList.resize(3);
+	Counter = 3;
+	Counter_2 = 3;
 	BasicCourse.m_SetTitle("История");
 	BasicCourse.m_SetDescription("ИУК4-12Б");
 	StudentList[0].m_SetName("Егор");
@@ -77,7 +80,7 @@ bool InputStudentInfo()
 	cout << "Введите пароль студента\n---> ";
 	cin >> StudentPassword;
 	Student BufferStudent = Student(StudentName,StudentSurname,StudentLogin,StudentPassword,StudentAge,StudentCourse,StudentMiddleEstimation);
-	StudentList.push_back(BufferStudent);
+	StudentList[Counter++]=BufferStudent;
 	return true;
 }
 bool InputTeacherInfo()
@@ -100,7 +103,7 @@ bool InputTeacherInfo()
 	cout << "Введите пароль преподавателя\n---> ";
 	cin >> TeacherPassword;
 	Teacher BufferTeacher = Teacher(TeacherName,TeacherSurname,TeacherLogin,TeacherPassword,TeacherAge);
-	TeacherList.push_back(BufferTeacher);
+	TeacherList[Counter_2++] = BufferTeacher;
 	return true;
 }
 void CourseAboutTable()
@@ -123,12 +126,13 @@ void InputCourseInfo()
 }
 bool StudentsTable()
 {
+	int MaxNameSurnameCol = 0;
 	int MaxNameLength = 0;
 	int MaxSurnameLength = 0;
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
-	for (int i = 0; i < StudentList.size(); i++)
+	for (int i = 0; i < Counter; i++)
 	{
 		if (StudentList[i].m_GetName().length() > MaxNameLength)
 		{
@@ -147,7 +151,7 @@ bool StudentsTable()
 			MaxPasswordLength = StudentList[i].m_GetPassword().length();
 		}
 	}
-	for (int i = 0; i < StudentList.size(); i++)
+	for (int i = 0; i < Counter; i++)
 	{
 		int BufferAge = StudentList[i].m_GetAge();
 		for (int k = 0; BufferAge > 0; k++)
@@ -159,9 +163,10 @@ bool StudentsTable()
 			}
 		}
 	}
-	for (int j = 0; j < StudentList.size(); j++)
+	MaxNameSurnameCol = MaxNameLength + MaxSurnameLength + 1;
+	for (int j = 0; j < Counter; j++)
 	{
-		cout << "|" << setw(MaxNameLength) << left << StudentList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << StudentList[j].m_GetSurname() << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|"<<setw(1)<<left<<StudentList[j].m_GetMiddleEstimation() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
+		cout << "|" <<setw(MaxNameSurnameCol)<<left<< StudentList[j] << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|" << setw(1) << left << StudentList[j].m_GetMiddleEstimation() << "|" <<setw(1)<<left<<StudentList[j].m_GetCourse() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|' << endl;
 	}
 	return true;
@@ -173,11 +178,11 @@ bool CheckAge()
 	while (flag==true)
 	{
 		system("cls");
-		for (int i = 0; i < StudentList.size(); i++)
+		for (int i = 0; i < Counter; i++)
 		{
 			StudentList[i].m_CheckAge(StudentList[i].m_GetAge(), i);
 		}
-		for (int i = 0; i < TeacherList.size(); i++)
+		for (int i = 0; i < Counter; i++)
 		{
 			TeacherList[i].m_CheckAge(TeacherList[i].m_GetAge(), i);
 		}
@@ -196,7 +201,8 @@ void TeachersTable()
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
-	for (int i = 0; i < TeacherList.size(); i++)
+	int MaxNameSurnameCol = 0;
+	for (int i = 0; i < Counter_2; i++)
 	{
 		if (TeacherList[i].m_GetName().length() > MaxNameLength)
 		{
@@ -215,7 +221,7 @@ void TeachersTable()
 			MaxPasswordLength = TeacherList[i].m_GetPassword().length();
 		}
 	}
-	for (int i = 0; i < TeacherList.size(); i++)
+	for (int i = 0; i < Counter_2; i++)
 	{
 		int BufferAge = TeacherList[i].m_GetAge();
 		for (int k = 0; BufferAge > 0; k++)
@@ -227,9 +233,10 @@ void TeachersTable()
 			}
 		}
 	}
-	for (int j = 0; j < TeacherList.size(); j++)
+	MaxNameSurnameCol = MaxNameLength + MaxSurnameLength + 1;
+	for (int j = 0; j < Counter_2; j++)
 	{
-		cout << "|" << setw(MaxNameLength) << left << TeacherList[j].m_GetName() << " " << setw(MaxSurnameLength) << left << TeacherList[j].m_GetSurname() << "|" << setw(MaxAgeLength + 1) << left << TeacherList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << TeacherList[j].m_GetLogin()
+		cout << "|" << setw(MaxNameSurnameCol) << left <<TeacherList[j]<< "|" << setw(MaxAgeLength + 1) << left << TeacherList[j].m_GetAge() << "|" << setw(MaxLoginLength) << left << TeacherList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << TeacherList[j].m_GetPassword() << '|' << endl;
 	}
 }
@@ -238,7 +245,7 @@ void CalcCourse()
 {
 	int sum = 0;
 	int k = 0;
-	for (int i = 0; i < StudentList.size(); i++)
+	for (int i = 0; i < Counter; i++)
 	{
 		sum += StudentList[i].m_GetMiddleEstimation();
 		k++;
@@ -281,6 +288,90 @@ bool AllInfoTable()
 		cin >> iflag;
 		if (iflag == 1) {
 			flag = false;
+		}
+	}
+	return true;
+}
+
+bool AppendPeople()
+{
+	int Checker = 0;
+	Student BufferStudent;
+	Teacher BufferTeacher;
+	cout << "1. Студента" << endl;
+	cout << "2. Преподавателя\n>>> ";
+	cin >> Checker;
+	switch (Checker)
+	{
+	case 1:
+		cout << "Введите информацию(Имя, фамилия, возраст, средняя оценка, курс, логин, пароль)" << endl;
+		cin >> BufferStudent;
+		StudentList[Counter++] = BufferStudent;
+		break;
+	case 2:
+		cout << "Введите информацию(Имя, фамилия, возраст, логин, пароль)" << endl;
+		cin >> BufferTeacher;
+		TeacherList[Counter_2++] = BufferTeacher;
+		break;
+	}	
+	return true;
+}
+bool RemoveStorTc()
+{
+	int Checker = 0;
+	int StIn = 0;
+	int TcIn = 0;
+	cout << "1. Студента" << endl;
+	cout << "2. Преподавателя\n>>> ";
+	cin >> Checker;
+	switch (Checker)
+	{
+	case 1:
+		cout << "Какого студента удалить?" << endl;
+		cin >> StIn;
+		for (int i = StIn; i < Counter - 1; i++)
+		{
+			StudentList[i] = StudentList[i + 1];
+		}
+		Counter--;
+		break;
+	case 2:
+		cout << "Какого преподавателя удалить?" << endl;
+		cin >> TcIn;
+		for (int i = TcIn; i < Counter_2 - 1; i++)
+		{
+			TeacherList[i] = TeacherList[i + 1];
+		}
+		Counter_2--;
+		break;
+	}
+	return true;
+}
+
+bool Sort()
+{
+	for (int i = 0; i < Counter_2; i++)
+	{
+		for (int j = i + 1; j < Counter_2; j++)
+		{
+			if (TeacherList[i] > TeacherList[j])
+			{
+				Teacher temp = TeacherList[i];
+				TeacherList[i] = TeacherList[j];
+				TeacherList[j] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < Counter; i++)
+	{
+		for (int j = i + 1; j < Counter; j++)
+		{
+			if (StudentList[i] > StudentList[j])
+			{
+				Student temp = StudentList[i];
+				StudentList[i] = StudentList[j];
+				StudentList[j] = temp;
+			}
 		}
 	}
 	return true;

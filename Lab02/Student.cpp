@@ -61,3 +61,27 @@ int Student::m_GetMiddleEstimation()
 {
 	return m_MiddleEstimation;
 }
+
+int Student::m_GetCourse()
+{
+	return m_course;
+}
+
+std::ostream& operator<<(std::ostream& out, const Student& St)
+{
+	return out << St.m_name + " " + St.m_surname;
+}
+
+std::istream& operator>>(std::istream& in,  Student& St)
+{
+	in >> St.m_name;
+	in.ignore();
+	in >> St.m_surname;
+	in.ignore();
+	in >> St.m_age >> St.m_MiddleEstimation >> St.m_course;
+	in.ignore();
+	in >> St.m_login;
+	in.ignore();
+	in>> St.m_password;
+	return in;
+}
