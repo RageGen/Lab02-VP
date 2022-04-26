@@ -129,6 +129,7 @@ bool StudentsTable()
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
+	StudentList.resize(2);
 	for (int i = 0; i < StudentList.size(); i++)
 	{
 		if (StudentList[i].m_GetName().length() > MaxNameLength)

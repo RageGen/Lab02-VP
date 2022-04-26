@@ -11,32 +11,24 @@ public:
 	}
 	void resize(int index)
 	{
-		if (Empty())
-		{
-			m_DectorSize = index;
-			m_DectorCapacity = index;
-			m_DectorStorage = new T[m_DectorCapacity];
-		}
-		else
-		{
-			T* TemporaryStorage = new T[m_DectorSize];
-			for (int i = 0; i < m_DectorSize; i++)
+			T* TemporaryStorage = new T[index];
+			for (int i = 0; i < index; i++)
 			{
 				TemporaryStorage[i] = m_DectorStorage[i];
 			}
+
 			m_DectorSize = index;
 			m_DectorCapacity = index;
 			m_DectorStorage = new T[m_DectorCapacity];
-			for (int i = 0; i < m_DectorSize; i++)
+			for (int i = 0; i < index; i++)
 			{
 				m_DectorStorage[i] = TemporaryStorage[i];
 			}
 			delete[] TemporaryStorage;
-		}
 	}
 	bool Empty()
 	{
-		if (m_DectorSize == 0)
+		if (size() == 0)
 		{
 			return true;
 		}
