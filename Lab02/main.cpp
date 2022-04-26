@@ -1,6 +1,4 @@
 #include "Func.hpp"
-#include "Menu.hpp"
-#include "Item.hpp"
 using namespace std;
 using namespace ZDA;
 int main()

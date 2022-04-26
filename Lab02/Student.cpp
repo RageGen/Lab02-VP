@@ -74,14 +74,23 @@ std::ostream& operator<<(std::ostream& out, const Student& St)
 
 std::istream& operator>>(std::istream& in,  Student& St)
 {
+	std::cout << "¬ведите им€ студента\n---> ";
 	in >> St.m_name;
 	in.ignore();
+	std::cout << "¬ведите фамилию студента\n---> ";
 	in >> St.m_surname;
 	in.ignore();
-	in >> St.m_age >> St.m_MiddleEstimation >> St.m_course;
+	std::cout << "¬ведите возраст студента\n---> ";
+	in >> St.m_age;
+	std::cout << "”кажите курс студента\n---> ";
+	in >> St.m_course;
+	std::cout << "¬ведите среднюю оценку\n---> ";
+	in >> St.m_MiddleEstimation;
 	in.ignore();
+	std::cout << "¬ведите логин студента\n---> ";
 	in >> St.m_login;
 	in.ignore();
-	in>> St.m_password;
+	std::cout << "¬ведите пароль студента\n---> ";
+	in >> St.m_password;
 	return in;
 }

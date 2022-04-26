@@ -25,6 +25,9 @@
     <Filter Include="Models\Course">
       <UniqueIdentifier>{1b86b6e9-fa64-457e-84f5-4563b4b01cbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models\Dector">
+      <UniqueIdentifier>{ba733f03-a35b-4382-9288-fd86fef2440e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Dector.cpp">
+      <Filter>Models\Dector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.hpp">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Menu.hpp">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Dector.hpp">
+      <Filter>Models\Dector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

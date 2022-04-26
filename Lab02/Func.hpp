@@ -2,9 +2,12 @@
 #include "Course.hpp"
 #include "Student.hpp"
 #include "Teacher.hpp"
+#include "Dector.hpp"
 #include <vector>
 #include <Windows.h>
 #include <iomanip>
+#include "Menu.hpp"
+#include "Item.hpp"
 bool InputStudentInfo();
 bool InputTeacherInfo();
 bool InputAllInfo();
