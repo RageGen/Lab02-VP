@@ -80,6 +80,9 @@
     <ClInclude Include="Dector.hpp">
       <Filter>Models\Dector</Filter>
     </ClInclude>
+    <ClInclude Include="NDector.hpp">
+      <Filter>Models\Dector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

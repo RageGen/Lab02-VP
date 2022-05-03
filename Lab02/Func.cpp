@@ -1,9 +1,10 @@
 #include "Func.hpp"
+#include <vector>
 using namespace ZDA;
 using namespace std;
 bool RunMenu = true;
-Dector <Student> StudentList;
-Dector <Teacher> TeacherList;
+Dector StudentList;
+vector<Teacher> TeacherList;
 Course BasicCourse;
 void LocalInformation()
 {
@@ -129,7 +130,6 @@ bool StudentsTable()
 	int MaxLoginLength = 0;
 	int MaxPasswordLength = 0;
 	int MaxAgeLength = 0;
-	StudentList.resize(2);
 	for (int i = 0; i < StudentList.size(); i++)
 	{
 		if (StudentList[i].m_GetName().length() > MaxNameLength)
@@ -166,6 +166,10 @@ bool StudentsTable()
 	{
 		cout << "|" <<setw(MaxNameSurnameCol)<<left<< StudentList[j] << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|" << setw(1) << left << StudentList[j].m_GetMiddleEstimation() << "|" <<setw(1)<<left<<StudentList[j].m_GetCourse() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|' << endl;
+	}
+	for (Student s : StudentList)
+	{
+		cout << s;
 	}
 	return true;
 }

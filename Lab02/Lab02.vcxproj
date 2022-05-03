@@ -155,6 +155,7 @@
     <ClInclude Include="Func.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="NDector.hpp" />
     <ClInclude Include="Student.hpp" />
     <ClInclude Include="Teacher.hpp" />
     <ClInclude Include="User.hpp" />
