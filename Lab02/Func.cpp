@@ -26,6 +26,7 @@ void LocalInformation()
 	StudentList[1].m_SetCourse(1);
 	StudentList[1].m_SetMiddleEstimation(4);
 	StudentList[1].m_SetLogin("Serg12");
+	StudentList[1].m_SetPassword("password12345");
 
 	StudentList[2].m_SetName("Елизавета");
 	StudentList[2].m_SetSurname("Козырева");
@@ -321,7 +322,7 @@ bool RemoveTeacher()
 	int Checker = 0;
 	cout << "Какого преподавателя удалить?" << endl;
 	cin >> Checker;
-	StudentList.RemoveAt(Checker);
+	TeacherList.RemoveAt(Checker);
 	return true;
 }
 

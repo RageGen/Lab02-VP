@@ -57,13 +57,19 @@ std::ostream& operator<<(std::ostream& out, const Teacher& Tc)
 
 std::istream& operator>>(std::istream& in, Teacher& Tc)
 {
+	std::cout << "¬ведите им€ преподавател€\n---> ";
 	in >> Tc.m_name;
 	in.ignore();
+	std::cout << "¬ведите фамилию преподавател€\n---> ";
 	in >> Tc.m_surname;
 	in.ignore();
+	std::cout << "¬ведите возраст преподавател€\n---> ";
 	in >> Tc.m_age;
+	std::cout << "¬ведите логин преподавател€\n---> ";
 	in >> Tc.m_login;
 	in.ignore();
-	in>> Tc.m_password;
+	std::cout << "¬ведите пароль преподавател€\n---> ";
+	in >> Tc.m_password;
+
 	return in;
 }
