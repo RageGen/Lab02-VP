@@ -51,9 +51,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Dector.cpp">
-      <Filter>Models\Dector</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.hpp">
@@ -80,7 +77,7 @@
     <ClInclude Include="Dector.hpp">
       <Filter>Models\Dector</Filter>
     </ClInclude>
-    <ClInclude Include="NDector.hpp">
+    <ClInclude Include="DectorIterator.hpp">
       <Filter>Models\Dector</Filter>
     </ClInclude>
   </ItemGroup>

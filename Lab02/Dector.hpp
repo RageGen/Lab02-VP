@@ -1,27 +1,5 @@
 #pragma once
-class VectorIterator {
-	friend class MyVector;
-public:
-	VectorIterator(const VectorIterator& _it) : m_data(_it.m_data)
-	{}
-	bool operator==(const VectorIterator& _it) const {
-		return m_data == _it.m_data;
-	}
-	bool operator!=(const VectorIterator& _it) const {
-		return m_data != _it.m_data;
-	}
-	VectorIterator& operator++() {
-		m_data++;
-		return *this;
-	}
-	Student& operator*() const {
-		return *m_data;
-	}
-	VectorIterator(Student* _p) : m_data(_p) {}
-private:
-	Student* m_data;
-};
-
+#include "DectorIterator.hpp"
 class Dector 
 {
 public:
@@ -32,6 +10,7 @@ public:
 		m_DectorSize = 0;
 		m_DectorCapacity = 1;
 		m_DectorStorage = new Student[m_DectorCapacity];
+		m_end = m_DectorStorage + m_DectorSize;
 	}
 	void resize(int index)
 	{
@@ -40,6 +19,7 @@ public:
 			m_DectorSize = index;
 			m_DectorCapacity = index;
 			m_DectorStorage = new Student[m_DectorCapacity];
+			m_end = m_DectorStorage + m_DectorSize;
 		}
 		else {
 			Student* TemporaryStorage = new Student[index];
@@ -51,6 +31,7 @@ public:
 			m_DectorSize = index;
 			m_DectorCapacity = index;
 			m_DectorStorage = new Student[m_DectorCapacity];
+			m_end = m_DectorStorage + m_DectorSize;
 			for (int i = 0; i < index; i++)
 			{
 				m_DectorStorage[i] = TemporaryStorage[i];
@@ -76,6 +57,7 @@ public:
 			m_DectorStorage[i] = m_DectorStorage[i + 1];
 		}
 		m_DectorSize--;
+		m_end = m_DectorStorage + m_DectorSize;
 	}
 	int size()
 	{
@@ -104,6 +86,14 @@ public:
 	}
 	const_iterator end() const {
 		return const_iterator(m_end);
+	}
+	friend std::ostream& operator<<(std::ostream& out, const Dector obj) {
+		for (int i = 0; i < obj.m_DectorSize; i++) {
+			out << obj.m_DectorStorage[i];
+		}
+		out << '\n';
+
+		return out;
 	}
 private:
 	 size_t m_DectorSize{};

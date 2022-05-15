@@ -1,5 +1,6 @@
 #include "Func.hpp"
 #include <vector>
+#include "Dector.hpp"
 using namespace ZDA;
 using namespace std;
 bool RunMenu = true;
@@ -168,10 +169,6 @@ bool StudentsTable()
 		cout << "|" <<setw(MaxNameSurnameCol)<<left<< StudentList[j] << "|" << setw(MaxAgeLength + 1) << left << StudentList[j].m_GetAge() << "|" << setw(1) << left << StudentList[j].m_GetMiddleEstimation() << "|" <<setw(1)<<left<<StudentList[j].m_GetCourse() << "|" << setw(MaxLoginLength) << left << StudentList[j].m_GetLogin()
 			<< "|" << setw(MaxPasswordLength) << left << StudentList[j].m_GetPassword() << '|' << endl;
 	}
-	for (Student s : StudentList)
-	{
-		cout << s;
-	}
 	return true;
 }
 bool CheckAge()
@@ -322,7 +319,6 @@ bool RemoveTeacher()
 	int Checker = 0;
 	cout << "Какого преподавателя удалить?" << endl;
 	cin >> Checker;
-	TeacherList.RemoveAt(Checker);
 	return true;
 }
 

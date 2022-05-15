@@ -141,7 +141,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Course.cpp" />
-    <ClCompile Include="Dector.cpp" />
     <ClCompile Include="Func.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
@@ -152,10 +151,10 @@
   <ItemGroup>
     <ClInclude Include="Course.hpp" />
     <ClInclude Include="Dector.hpp" />
+    <ClInclude Include="DectorIterator.hpp" />
     <ClInclude Include="Func.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="Menu.hpp" />
-    <ClInclude Include="NDector.hpp" />
     <ClInclude Include="Student.hpp" />
     <ClInclude Include="Teacher.hpp" />
     <ClInclude Include="User.hpp" />
