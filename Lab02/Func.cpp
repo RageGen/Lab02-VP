@@ -4,8 +4,8 @@
 using namespace ZDA;
 using namespace std;
 bool RunMenu = true;
-Dector StudentList;
-vector<Teacher> TeacherList;
+Dector<Student> StudentList;
+Dector<Teacher> TeacherList;
 Course BasicCourse;
 void LocalInformation()
 {
@@ -69,8 +69,21 @@ bool InputStudentInfo()
 	cin >> StudentName;
 	cout << "¬ведите фамилию студента\n---> ";
 	cin >> StudentSurname;
-	cout << "¬ведите возраст студента\n---> ";
-	cin >> StudentAge;
+	try {
+		cout << "¬ведите возраст студента\n---> ";
+		cin >> StudentAge;
+		if (StudentAge>40)
+		{
+			throw 1;
+		}
+	}
+	catch (int e)
+	{
+		if (e == 1)
+		{
+			cout << "„ислы такой велечины недопустимы" << endl;
+		}
+	}
 	cout << "”кажите курс студента\n---> ";
 	cin >> StudentCourse;
 	cout << "¬ведите среднюю оценку\n---> ";

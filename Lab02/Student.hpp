@@ -1,5 +1,6 @@
 #pragma once
 #include "User.hpp"
+#include <exception>
 class Student : public User
 {
 protected:
