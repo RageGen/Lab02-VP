@@ -10,7 +10,7 @@ public:
 	size_t size();
 	void resize(int index);
 	void push_back(const T&);
-	void RemoveAt(size_t index);
+	void RemoveAt(int index);
 	T& operator[](int index);
 	void memory_up();
 private:
@@ -25,7 +25,7 @@ private:
 template <typename T>
 Dector<T>::Dector() {
 	m_DectorSize = 0;
-	m_DectorCapacity = 1;
+	m_DectorCapacity = 0;
 	m_DectorStorage = new T[m_DectorCapacity];
 	m_end = m_DectorStorage + m_DectorSize;
 }
@@ -61,29 +61,34 @@ size_t Dector<T>::size() {
 template <typename T>
 void Dector<T>::resize(int index)
 {
-	if (m_DectorSize == 0)
-	{
-		m_DectorSize = index;
-		m_DectorCapacity = index;
-		m_DectorStorage = new T[m_DectorCapacity];
-		m_end = m_DectorStorage + m_DectorSize;
+	try {
+		if (m_DectorSize == 0)
+		{
+			m_DectorSize = index;
+			m_DectorCapacity = index;
+			m_DectorStorage = new T[m_DectorCapacity];
+			m_end = m_DectorStorage + m_DectorSize;
+		}
+		else {
+			T* TemporaryStorage = new T[index];
+			for (int i = 0; i < index; i++)
+			{
+				TemporaryStorage[i] = m_DectorStorage[i];
+			}
+			m_DectorSize = index;
+			m_DectorCapacity = index;
+			m_DectorStorage = new T[m_DectorCapacity];
+			m_end = m_DectorStorage + m_DectorSize;
+			for (int i = 0; i < index; i++)
+			{
+				m_DectorStorage[i] = TemporaryStorage[i];
+			}
+			delete[] TemporaryStorage;
+		}
 	}
-	else {
-		T* TemporaryStorage = new T[index];
-		for (int i = 0; i < index; i++)
-		{
-			TemporaryStorage[i] = m_DectorStorage[i];
-		}
-
-		m_DectorSize = index;
-		m_DectorCapacity = index;
-		m_DectorStorage = new T[m_DectorCapacity];
-		m_end = m_DectorStorage + m_DectorSize;
-		for (int i = 0; i < index; i++)
-		{
-			m_DectorStorage[i] = TemporaryStorage[i];
-		}
-		delete[] TemporaryStorage;
+	catch (std::bad_alloc bd)
+	{
+		std::cout << bd.what() << std::endl;
 	}
 }
 template <typename T>
@@ -95,16 +100,22 @@ void Dector<T>::push_back(const T& value) {
 	m_DectorStorage[m_DectorSize++] = value;
 }
 template <typename T>
-void Dector<T>::RemoveAt(size_t index) {
-	for (int i = index; i < m_DectorSize - 1; i++)
-	{
-		m_DectorStorage[i] = m_DectorStorage[i + 1];
-	}
-	m_DectorSize--;
-	m_end = m_DectorStorage + m_DectorSize;
+void Dector<T>::RemoveAt(int index) {
+		for (int i = index; i < m_DectorSize - 1; i++)
+		{
+			m_DectorStorage[i] = m_DectorStorage[i + 1];
+		}
+		m_DectorSize--;
+		m_end = m_DectorStorage + m_DectorSize;
 }
 template <typename T>
 T& Dector<T>::operator[](int index) {
-	return m_DectorStorage[index];
+	try{
+		return m_DectorStorage[index];
+	}
+	catch (std::out_of_range outr)
+	{
+		std::cout << outr.what() << '\n';
+	}
 }
 #endif

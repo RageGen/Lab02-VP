@@ -11,9 +11,17 @@ int Course::m_GetCourseEstimation()
 {
 	return m_CourseEstimation;
 }
-void Course::m_SetCourseEstimation(int Estimation)
+bool Course::m_SetCourseEstimation(int Estimation)
 {
-	m_CourseEstimation = Estimation;
+	if (Estimation < 0||Estimation==0)
+	{
+		return false;
+	}
+	else
+	{
+		m_CourseEstimation = Estimation;
+		return true;
+	}
 }
 void Course::m_SetTitle(std::string Title)
 {

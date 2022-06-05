@@ -30,11 +30,16 @@ std::string Teacher::m_GetLogin() {
 std::string Teacher::m_GetPassword() {
 	return m_password;
 }
-void Teacher::m_CheckAge(int age, int ListPos)
+bool Teacher::m_CheckAge(int age, int ListPos)
 {
 	if ((0 > age)||(age > 99))
 	{
 		std::cout << "Некоректный возраст! У преподавателя номер "<<ListPos+1 << std::endl;
+		return false;
+	}
+	else
+	{
+		return true;
 	}
 }
 Teacher::Teacher(std::string name, std::string surname, std::string login, std::string password, int age)

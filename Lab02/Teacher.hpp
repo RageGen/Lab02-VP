@@ -23,7 +23,7 @@ public:
 	std::string m_GetLogin();
 	std::string m_GetPassword();
 	int m_GetAge();
-	virtual void m_CheckAge(int,int);
+	virtual bool m_CheckAge(int,int);
 	Teacher(std::string, std::string, std::string, std::string, int);
 	Teacher();
 };

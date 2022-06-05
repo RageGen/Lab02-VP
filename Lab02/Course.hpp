@@ -12,7 +12,7 @@ public:
 	std::string m_GetTitle();
 	std::string m_GetDescription();
 	int m_GetCourseEstimation();
-	void m_SetCourseEstimation(int);
+	bool m_SetCourseEstimation(int);
 	void m_SetTitle(std::string);
 	void m_SetDescription(std::string);
 	Course(std::string, std::string);

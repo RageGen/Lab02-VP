@@ -31,7 +31,7 @@ public:
 	int m_GetAge();
 	int m_GetMiddleEstimation();
 	int m_GetCourse();
-	virtual void m_CheckAge(int,int);
+	virtual bool m_CheckAge(int,int);
 	Student(std::string, std::string, std::string, std::string, int, int, int);
 	Student();
 };

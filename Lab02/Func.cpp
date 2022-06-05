@@ -1,6 +1,6 @@
 #include "Func.hpp"
-#include <vector>
 #include "Dector.hpp"
+#include <stdexcept>
 using namespace ZDA;
 using namespace std;
 bool RunMenu = true;
@@ -19,6 +19,7 @@ void LocalInformation()
 	StudentList[0].m_SetCourse(3);
 	StudentList[0].m_SetMiddleEstimation(3);
 	StudentList[0].m_SetLogin("Egor1203");
+
 	StudentList[0].m_SetPassword("password12345");
 
 	StudentList[1].m_SetName("Сергей");
@@ -69,21 +70,8 @@ bool InputStudentInfo()
 	cin >> StudentName;
 	cout << "Введите фамилию студента\n---> ";
 	cin >> StudentSurname;
-	try {
 		cout << "Введите возраст студента\n---> ";
 		cin >> StudentAge;
-		if (StudentAge>40)
-		{
-			throw 1;
-		}
-	}
-	catch (int e)
-	{
-		if (e == 1)
-		{
-			cout << "Числы такой велечины недопустимы" << endl;
-		}
-	}
 	cout << "Укажите курс студента\n---> ";
 	cin >> StudentCourse;
 	cout << "Введите среднюю оценку\n---> ";
@@ -169,6 +157,7 @@ bool StudentsTable()
 		int BufferAge = StudentList[i].m_GetAge();
 		for (int k = 0; BufferAge > 0; k++)
 		{
+
 			BufferAge /= 10;
 			if (k > MaxAgeLength)
 			{
@@ -191,13 +180,22 @@ bool CheckAge()
 	while (flag==true)
 	{
 		system("cls");
-		for (int i = 0; i < StudentList.size(); i++)
-		{
-			StudentList[i].m_CheckAge(StudentList[i].m_GetAge(), i);
+		try {
+			for (int i = 0; i < StudentList.size(); i++)
+			{
+				if (StudentList[i].m_CheckAge(StudentList[i].m_GetAge(), i) == false)
+				{
+					throw runtime_error("Age error");
+				};
+			}
+			for (int i = 0; i < TeacherList.size(); i++)
+			{
+				TeacherList[i].m_CheckAge(TeacherList[i].m_GetAge(), i);
+			}
 		}
-		for (int i = 0; i < TeacherList.size(); i++)
+		catch (std::runtime_error ex)
 		{
-			TeacherList[i].m_CheckAge(TeacherList[i].m_GetAge(), i);
+			cout << ex.what() << endl;
 		}
 		cout << "Вернуться 1-Да 0-Нет" << endl;
 		cin >> iflag;
@@ -258,12 +256,24 @@ void CalcCourse()
 {
 	int sum = 0;
 	int k = 0;
+	int value = 0;
 	for (int i = 0; i < StudentList.size(); i++)
 	{
 		sum += StudentList[i].m_GetMiddleEstimation();
 		k++;
 	}
-	BasicCourse.m_SetCourseEstimation (sum / k);
+	value = sum / k;
+	try
+	{
+		if (BasicCourse.m_SetCourseEstimation(value) == false);
+		{
+			throw runtime_error("Estimation error");
+		};
+	}
+	catch (std::runtime_error ex)
+	{
+		cout << ex.what() << endl;
+	}
 }
 bool InputAllInfo()
 {
@@ -362,7 +372,7 @@ bool Sort()
 {
 	for (int i = 0; i < TeacherList.size(); i++)
 	{
-		for (int j = i + 1; j < TeacherList.size(); j++)
+		for (int j = i + 1; j < TeacherList.size()+1; j++)
 		{
 			if (TeacherList[i] > TeacherList[j])
 			{

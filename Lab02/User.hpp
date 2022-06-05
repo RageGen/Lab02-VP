@@ -11,6 +11,6 @@ protected:
 	std::string m_password;
 	int m_age;
 public:
-	virtual void m_CheckAge(int,int) = 0;
+	virtual bool m_CheckAge(int,int) = 0;
 };
 

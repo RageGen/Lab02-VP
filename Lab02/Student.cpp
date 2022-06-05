@@ -31,11 +31,15 @@ std::string Student::m_GetSurname() {
 int Student::m_GetAge() {
 	return m_age;
 }
-void Student::m_CheckAge(int age,int ListPos)
+bool Student::m_CheckAge(int age,int ListPos)
 {
 	if ((0 > age) || (age > 99))
 	{
 		std::cout << "Некоректный возраст! У студента номер "<<ListPos+1 << std::endl;
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 std::string Student::m_GetLogin() {
